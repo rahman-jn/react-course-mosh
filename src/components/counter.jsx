@@ -12,7 +12,8 @@ class Counter extends React.Component {
         return this.state.tags.map(tag => <li key = { tag }>{ tag } </li>)
     };
 
-    handleIncrement = () => {
+    handleIncrement = (e) => {
+        //console.log(e.id);
         this.setState({ count : this.state.count +1 } );
     }
 
@@ -21,7 +22,7 @@ class Counter extends React.Component {
         return (
         <div>
             <span className={this.badgeClasses()}>{ this.formatCount() }</span>    
-            <button onClick = { this.handleIncrement } >Increment</button>
+            <button onClick = { () => { this.handleIncrement({id : 1 } ) } } >Increment</button>
         <div>
             {this.state.tags.length === 0 && "There are no tags found!"}
             { this.renderTags() }</div>
@@ -32,7 +33,7 @@ class Counter extends React.Component {
     badgeClasses() {
         let classes = "badge badge-";
         classes += this.state.count === 0 ? "warning" : "primary";
-        console.log(classes);
+        //console.log(classes);
         return classes;
     }
 
