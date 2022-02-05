@@ -3,12 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Counters from './components/counters';
 import Vidly from './components/vidly';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 
-ReactDOM.render(<Counters />,
+ReactDOM.render(<App />,
   document.getElementById('root')
 );
 
