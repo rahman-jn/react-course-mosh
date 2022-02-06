@@ -7,7 +7,7 @@ import Vidly from './components/vidly';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 
-ReactDOM.render(<App />,
+ReactDOM.render(<Vidly />,
   document.getElementById('root')
 );
 

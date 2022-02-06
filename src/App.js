@@ -20,6 +20,13 @@ handleIncrement = (counter) => {
     this.setState({counters} );
 }
 
+handleDecrement = (counter) => {
+  const counters = [...this.state.counters];
+  const index = counters.indexOf(counter);
+  counters[index].value--;
+  this.setState({counters} )
+}
+
 handleDelete = (countId) =>{
     const counters = this.state.counters.filter(c => c.id !== countId);
     this.setState({ counters })
@@ -41,6 +48,7 @@ handleReset = () =>{
                     onDelete = {this.handleDelete}
                     onReset = {this.handleReset}
                     onIncrement = {this.handleIncrement}
+                    onDecrement = { this.handleDecrement }
                     counters = {this.state.counters}
                 />
       </React.Fragment>
