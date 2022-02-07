@@ -5,6 +5,7 @@ import paginate from '../utils/paginate';
 import {ListGroup} from './listgroup';
 import {getGenres} from '../services/fakeGenreService';
 import MoviesTable from './moviesTable';
+import _ from 'lodash';
 
 class Vidly extends React.Component {
 
@@ -13,6 +14,7 @@ class Vidly extends React.Component {
         perPage :3,
         currentPage :1,
         genres : [],
+        sortColumn : {path : 'title', order : 'asc'}
     };
 
     componentDidMount(){
@@ -40,17 +42,23 @@ class Vidly extends React.Component {
 
     handleGenre = genre => {
         this.setState({ currentGenre : genre, currentPage : 1 });
+    };
+
+    handleSort = path =>{
+        this.setState({ sortColumn : {path, order: 'asc' }});
     }
 
     showTable(){
-
+        const { sortColumn } = this.state;
         if(this.state.movies.length ===0 )
             return <p>There are no movies!</p>;
 
             const filteredMovies = this.state.currentGenre && this.state.currentGenre._id ?
             this.state.movies.filter(movie => (movie.genre._id === this.state.currentGenre._id)) : this.state.movies;
+            
+            const sorted = _.orderBy(filteredMovies, sortColumn.path, sortColumn.order);
 
-            const movies = paginate(filteredMovies, this.state.currentPage, this.state.perPage);
+            const movies = paginate(sorted, this.state.currentPage, this.state.perPage);
             
         return (
         <div className="row">
@@ -66,6 +74,7 @@ class Vidly extends React.Component {
                     movies = {movies}
                     onLike = {this.handleLike}
                     onDelete = {this.handleDelete}
+                    onSort = {this.handleSort}
                 />
 
                 <Pagination
