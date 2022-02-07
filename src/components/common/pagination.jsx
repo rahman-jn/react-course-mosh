@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import propTypes from 'prop-types';
 
 class Pagination  extends React.Component {
     render() { 
@@ -24,5 +25,11 @@ class Pagination  extends React.Component {
     }
 }
  
+Pagination.propTypes = {
+    moviesCount : propTypes.number.isRequired,
+    perPage : propTypes.number.isRequired,
+    currentPage : propTypes.number.isRequired,
+    onPageChange : propTypes.func
+}
 
 export  default Pagination ;
